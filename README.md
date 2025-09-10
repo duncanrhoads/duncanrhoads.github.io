@@ -1,2 +1,2 @@
-# my_website
+# my website
 Github Pages repo which will serve as my personal website
