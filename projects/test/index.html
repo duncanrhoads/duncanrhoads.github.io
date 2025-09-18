@@ -222,11 +222,13 @@ function typeText(elementId, text, speed = 30) {
 }
 
 
-  async function typeListItems(listId, items, speed = 30) {
+async function typeListItems(listId, items, speed = 30) {
   const ul = document.getElementById(listId);
+
   for (const item of items) {
-    // Create a new li with a span for typed text and a cursor span
+    // Create new li with strong label, typed span, and cursor
     const li = document.createElement('li');
+
     const strong = document.createElement('strong');
     strong.textContent = item.label + ": ";
     li.appendChild(strong);
@@ -242,12 +244,18 @@ function typeText(elementId, text, speed = 30) {
 
     ul.appendChild(li);
 
+    // Hide all previous cursors before typing next
+    const allCursors = ul.querySelectorAll('.cursor');
+    allCursors.forEach(c => c.style.visibility = 'hidden');
+
+    // Type the current item
     await typeTextSpan(span, cursor, item.value, speed);
+
+    // Hide the cursor after typing is complete
+    cursor.style.visibility = 'hidden';
   }
-  // After finishing all, hide all cursors
-  const allCursors = ul.querySelectorAll('.cursor');
-  allCursors.forEach(c => c.style.visibility = 'hidden');
 }
+
 
 function typeTextSpan(textSpan, cursor, text, speed = 30) {
   return new Promise((resolve) => {
