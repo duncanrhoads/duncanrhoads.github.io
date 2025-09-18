@@ -3,43 +3,44 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pixel Portfolio</title>
+<title>Pixel Portfolio - Terminal Style</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+  /* Terminal-style black & white */
   body {
-    background: #2e2b5f; /* deep purple */
+    background: #000000; /* pure black background */
     font-family: 'Press Start 2P', cursive;
-    color: #ffffff;
+    color: #FFFFFF; /* pure white text */
     margin: 0;
     padding: 0;
     text-align: center;
     user-select: none;
+    image-rendering: pixelated;
   }
 
   header {
-    background: #6b007b; /* Joker purple */
+    background: #000000; /* black */
     padding: 20px;
-    box-shadow: 0 6px #3e004a;
+    border-bottom: 2px solid #FFFFFF; /* white border */
   }
 
   header h1 {
     font-size: 1.8rem;
     margin: 0;
-    color: #ffffff;
+    color: #FFFFFF;
     text-shadow:
-      2px 2px 0 #000,
-      4px 4px 0 #00ff00; /* neon green accent */
+      1px 1px 0 #000000; /* subtle shadow for pixel effect */
   }
 
   main {
     max-width: 700px;
     margin: 40px auto;
-    background: #3f0d3f; /* dark purple */
-    border: 4px solid #00ff00; /* neon green */
+    background: #000000;
+    border: 4px solid #FFFFFF; /* white border for the box */
     padding: 20px;
-    box-shadow: inset 0 0 15px #ffffff22;
-    border-radius: 8px;
+    box-shadow: inset 0 0 10px #FFFFFF44;
+    border-radius: 0; /* sharp corners for terminal feel */
   }
 
   section {
@@ -49,39 +50,45 @@
   h2 {
     font-size: 1.4rem;
     margin-bottom: 15px;
-    color: #00ff00; /* neon green */
+    color: #FFFFFF;
     text-shadow: 1px 1px #000000;
   }
 
   a {
     font-weight: bold;
     text-decoration: none;
-    color: #ffffff;
-    background: #cc00cc; /* bright magenta */
+    color: #FFFFFF;
+    background: #000000;
     padding: 6px 10px;
-    border-radius: 4px;
-    box-shadow: 0 3px #660066;
+    border: 2px solid #FFFFFF;
     display: inline-block;
     margin: 5px;
     transition: all 0.15s ease;
+    box-shadow: none;
   }
 
   a:hover {
-    background: #ff00ff;
-    box-shadow: 0 1px #660066;
-    transform: translateY(2px);
+    background: #FFFFFF;
+    color: #000000;
+    border-color: #FFFFFF;
+    transform: translateY(0);
   }
 
   input[type="text"] {
     font-family: 'Press Start 2P', cursive;
     font-size: 1rem;
     padding: 8px;
-    border: 3px solid #00ff00;
-    border-radius: 5px;
+    border: 2px solid #FFFFFF;
+    border-radius: 0;
     width: 250px;
-    background-color: #1b1b1b;
-    color: #00ff00;
-    box-shadow: inset 0 0 5px #ffffff33;
+    background-color: #000000;
+    color: #FFFFFF;
+    box-shadow: none;
+    outline: none;
+  }
+
+  input[type="text"]::placeholder {
+    color: #AAAAAA;
   }
 
   .btn {
@@ -89,26 +96,27 @@
     font-size: 1rem;
     margin-left: 10px;
     padding: 8px 16px;
-    background: #00ff00;
-    color: #000000;
-    border: 3px solid #660066;
-    border-radius: 5px;
+    background: #000000;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    border-radius: 0;
     cursor: pointer;
-    box-shadow: 0 3px #440044;
+    box-shadow: none;
     transition: all 0.15s ease;
   }
 
   .btn:hover {
-    background: #99ff99;
-    box-shadow: 0 1px #440044;
-    transform: translateY(2px);
+    background: #FFFFFF;
+    color: #000000;
+    box-shadow: none;
+    transform: translateY(0);
   }
 
   footer {
     margin-top: 60px;
     font-size: 0.8rem;
-    color: #99ff99;
-    text-shadow: 1px 1px #000000;
+    color: #FFFFFF;
+    text-shadow: none;
   }
 
   h1, h2, p, a, input, .btn {
@@ -118,30 +126,30 @@
 </head>
 <body>
 <header>
-  <h1>Under Maintenance</h1>
+  <h1>UNDER MAINTENANCE</h1>
 </header>
 
 <main>
   <section>
-    <h2>Projects</h2>
-    <a href="https://duncanrhoads.github.io/projects" target="_blank" rel="noopener noreferrer">View Projects</a>
+    <h2>PROJECTS</h2>
+    <a href="https://duncanrhoads.github.io/projects" target="_blank" rel="noopener noreferrer">VIEW PROJECTS</a>
   </section>
 
   <section>
-    <h2>About Me</h2>
-    <a href="https://duncanrhoads.github.io/about-me" target="_blank" rel="noopener noreferrer">About Me</a>
+    <h2>ABOUT ME</h2>
+    <a href="https://duncanrhoads.github.io/about-me" target="_blank" rel="noopener noreferrer">ABOUT ME</a>
   </section>
 
   <section>
-    <h2>Learn More</h2>
-    <a href="https://github.com/duncanrhoads" target="_blank" rel="noopener noreferrer">Github</a>
-    <a href="https://linkedin.com/in/duncanrhoads" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <h2>LEARN MORE</h2>
+    <a href="https://github.com/duncanrhoads" target="_blank" rel="noopener noreferrer">GITHUB</a>
+    <a href="https://linkedin.com/in/duncanrhoads" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
   </section>
 </main>
 
 <footer>
-  <p>© 2025 Duncan Rhoads</p>
-  <p>Contact: duncanr2@illinois.edu</p>
+  <p>© 2025 DUNCAN RHOADS</p>
+  <p>CONTACT: duncanr2@illinois.edu</p>
 </footer>
 
 <script>
