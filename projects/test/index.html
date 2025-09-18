@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" as="style">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Project Title</title>
@@ -99,6 +100,21 @@
       font-weight: normal;
     }
 
+    @media (max-width: 600px) {
+      .typed-title {
+        font-size: 1.2rem;
+      }
+
+      .typed-header {
+        font-size: 1rem;
+      }
+
+      .typed-body {
+        font-size: 0.8rem;
+      }
+    }
+
+
     .cursor {
       display: inline-block;
       animation: blink 0.8s step-start infinite;
@@ -123,45 +139,42 @@
   </style>
 </head>
 <body>
-  <div id="startup-terminal">
-    <span id="startup-cursor" class="cursor">█</span>
-  </div>
 
-  <div id="terminal-title">
+  <div id="terminal-title" style="display: inline-block;">
       <span class="typed-text typed-title"></span><span class="cursor">█</span>
   </div>
 
   <div class="top-section">
-    <div class="project-image">
-      <img src="your-main-image.png" alt="Main project image">
-    </div>
+  <div class="project-image">
+    <img src="your-main-image.png" alt="Main project image">
   </div>
 
   <div class="info-box">
     <ul id="info-list"></ul>
   </div>
+</div>
 
   <div class="section">
-    <div id="terminal-overview-header">
+    <div id="terminal-overview-header" style="display: inline-block;">
       <span class="typed-text typed-header"></span><span class="cursor">█</span>
     </div>
-    <div id="terminal-overview-body">
+    <div id="terminal-overview-body" style="display: inline-block;">
       <span class="typed-text typed-body"></span><span class="cursor">█</span>
     </div>
   </div>
 
   <div class="section">
-    <div id="terminal-howitworks-header">
+    <div id="terminal-howitworks-header" style="display: inline-block;">
       <span class="typed-text typed-header"></span><span class="cursor">█</span>
     </div>
-    <div id="terminal-howitworks-body">
+    <div id="terminal-howitworks-body" style="display: inline-block;">
       <span class="typed-text typed-body"></span><span class="cursor">█</span>
     </div>
     <img src="workflow-diagram.png" alt="Workflow Diagram">
   </div>
 
   <div class="section">
-    <div id="terminal-gallery-header">
+    <div id="terminal-gallery-header" style="display: inline-block;">
       <span class="typed-text typed-header"></span><span class="cursor">█</span>
     </div>
     <img src="screenshot1.png" alt="Screenshot 1">
@@ -171,18 +184,27 @@
   <script>
 function typeText(elementId, text, speed = 30) {
   return new Promise((resolve) => {
-    const allCursors = document.querySelectorAll('.cursor');
     const container = document.getElementById(elementId);
+    if (!container) {
+      console.warn(`Element #${elementId} not found`);
+      resolve();
+      return;
+    }
+
     const textSpan = container.querySelector('.typed-text');
     const cursor = container.querySelector('.cursor');
 
-    // Hide all cursors first
+    if (!textSpan || !cursor) {
+      console.warn(`Missing .typed-text or .cursor in #${elementId}`);
+      resolve();
+      return;
+    }
+
+    const allCursors = document.querySelectorAll('.cursor');
     allCursors.forEach(c => c.style.visibility = 'hidden');
 
     let i = 0;
-
-    // Hide cursor while typing
-    if (cursor) cursor.style.visibility = 'hidden';
+    cursor.style.visibility = 'hidden';
 
     function typeChar() {
       if (i < text.length) {
@@ -190,17 +212,15 @@ function typeText(elementId, text, speed = 30) {
         i++;
         setTimeout(typeChar, speed);
       } else {
-        // Show cursor only on the active element after typing done
-        if (cursor && text.length > 0) {
-          cursor.style.visibility = 'visible';
-        }
+        cursor.style.visibility = 'visible';
         resolve();
       }
     }
 
-      typeChar();
-    });
-  }
+    typeChar();
+  });
+}
+
 
   async function typeListItems(listId, items, speed = 30) {
   const ul = document.getElementById(listId);
@@ -250,31 +270,10 @@ function typeTextSpan(textSpan, cursor, text, speed = 30) {
   }
 
 
-  function startupSequence() {
-    return new Promise((resolve) => {
-      const cursor = document.getElementById('startup-cursor');
-      let blinks = 0;
-      const maxBlinks = 3;
-      const blinkInterval = 500;
-
-      const interval = setInterval(() => {
-        cursor.style.visibility = (cursor.style.visibility === 'hidden') ? 'visible' : 'hidden';
-        if (cursor.style.visibility === 'visible') {
-          blinks++;
-          if (blinks >= maxBlinks) {
-            clearInterval(interval);
-            document.getElementById('startup-terminal').remove();
-            resolve();
-          }
-        }
-      }, blinkInterval);
-    });
-  }
 
   window.onload = async function () {
-    await startupSequence();
+
     await typeText('terminal-title', 'TEST TEST TEST', 50);
-    await startupSequence();
 
      const infoItems = [
     { label: 'Date', value: 'Some month 2025' },
