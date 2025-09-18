@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Projects - Terminal Style</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  body {
+    background: #000000;
+    font-family: 'Press Start 2P', cursive;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 20px;
+    user-select: none;
+    image-rendering: pixelated;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #FFFFFF;
+    padding-bottom: 10px;
+  }
+
+  .dropdown {
+    border: 2px solid #FFFFFF;
+    margin-bottom: 20px;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    background: #000000;
+  }
+
+  .dropdown-title {
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dropdown-title::after {
+    content: "▶";
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown.open .dropdown-title::after {
+    transform: rotate(90deg);
+  }
+
+  .dropdown-content {
+    margin-top: 15px;
+    display: none;
+    border-top: 1px solid #FFFFFF;
+    padding-top: 15px;
+  }
+
+  .dropdown.open .dropdown-content {
+    display: block;
+  }
+
+  .project-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .project-item img {
+    width: 48px;
+    height: 48px;
+    image-rendering: pixelated;
+    border: 1px solid #FFFFFF;
+    margin-right: 15px;
+  }
+
+  .project-item a {
+    font-size: 1rem;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-bottom: 1px dashed #FFFFFF;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .project-item a:hover {
+    background: #FFFFFF;
+    color: #000000;
+  }
+</style>
+</head>
+<body>
+  <h1>PROJECTS</h1>
+
+  <div class="dropdown" tabindex="0">
+    <div class="dropdown-title">CATEGORY 1</div>
+    <div class="dropdown-content">
+      <div class="project-item">
+        <img src="project1.png" alt="Project 1 Thumbnail" />
+        <a href="https://duncanrhoads.github.io/projects/test" target="_blank" rel="noopener noreferrer">Project TEST</a>
+      </div>
+      <div class="project-item">
+        <img src="project2.png" alt="Project 2 Thumbnail" />
+        <a href="project2.html" target="_blank" rel="noopener noreferrer">Project Two</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown" tabindex="0">
+    <div class="dropdown-title">CATEGORY 2</div>
+    <div class="dropdown-content">
+      <div class="project-item">
+        <img src="project3.png" alt="Project 3 Thumbnail" />
+        <a href="project3.html" target="_blank" rel="noopener noreferrer">Project Three</a>
+      </div>
+      <div class="project-item">
+        <img src="project4.png" alt="Project 4 Thumbnail" />
+        <a href="project4.html" target="_blank" rel="noopener noreferrer">Project Four</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown" tabindex="0">
+    <div class="dropdown-title">CATEGORY 3</div>
+    <div class="dropdown-content">
+      <div class="project-item">
+        <img src="project5.png" alt="Project 5 Thumbnail" />
+        <a href="project5.html" target="_blank" rel="noopener noreferrer">Project Five</a>
+      </div>
+      <div class="project-item">
+        <img src="project6.png" alt="Project 6 Thumbnail" />
+        <a href="project6.html" target="_blank" rel="noopener noreferrer">Project Six</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Toggle dropdown open/close on click
+  document.querySelectorAll('.dropdown').forEach(dropdown => {
+    dropdown.addEventListener('click', () => {
+      dropdown.classList.toggle('open');
+    });
+    // Also allow toggle with keyboard (Enter or Space)
+    dropdown.addEventListener('keydown', e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>
