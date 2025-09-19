@@ -25,48 +25,27 @@
     padding-bottom: 10px;
   }
 
-  .dropdown {
-    border: 2px solid #FFFFFF;
-    margin-bottom: 20px;
-    padding: 10px;
-    cursor: pointer;
-    user-select: none;
+  /* Filter dropdown */
+  .filter-select {
+    font-family: 'Press Start 2P', cursive;
     background: #000000;
-  }
-
-  .dropdown-title {
-    font-size: 1.2rem;
     color: #FFFFFF;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .dropdown-title::after {
-    content: "▶";
+    border: 2px solid #FFFFFF;
+    padding: 10px;
     font-size: 1rem;
-    transition: transform 0.3s ease;
-  }
-
-  .dropdown.open .dropdown-title::after {
-    transform: rotate(90deg);
-  }
-
-  .dropdown-content {
-    margin-top: 15px;
-    display: none;
-    border-top: 1px solid #FFFFFF;
-    padding-top: 15px;
-  }
-
-  .dropdown.open .dropdown-content {
+    margin: 0 auto 30px;
     display: block;
+  }
+
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .project-item {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
   }
 
   .project-item img {
@@ -89,67 +68,67 @@
     background: #FFFFFF;
     color: #000000;
   }
+
+  .hidden {
+    display: none !important;
+  }
 </style>
 </head>
 <body>
   <h1>PROJECTS</h1>
 
-  <div class="dropdown" tabindex="0">
-    <div class="dropdown-title">CATEGORY 1</div>
-    <div class="dropdown-content">
-      <div class="project-item">
-        <img src="project1.png" alt="Project 1 Thumbnail" />
-        <a href="https://duncanrhoads.github.io/projects/test" target="_blank" rel="noopener noreferrer">Project TEST</a>
-      </div>
-      <div class="project-item">
-        <img src="project2.png" alt="Project 2 Thumbnail" />
-        <a href="project2.html" target="_blank" rel="noopener noreferrer">Project Two</a>
-      </div>
-    </div>
-  </div>
+  <!-- 🔽 Filter Dropdown -->
+  <select id="filterSelect" class="filter-select" onchange="filterProjects()">
+    <option value="all">SHOW ALL</option>
+    <option value="cs">CS</option>
+    <option value="electrical">ELECTRICAL</option>
+    <option value="arduino">ARDUINO</option>
+    <option value="python">PYTHON</option>
+    <option value="script">SCRIPT</option>
+  </select>
 
-  <div class="dropdown" tabindex="0">
-    <div class="dropdown-title">CATEGORY 2</div>
-    <div class="dropdown-content">
-      <div class="project-item">
-        <img src="project3.png" alt="Project 3 Thumbnail" />
-        <a href="project3.html" target="_blank" rel="noopener noreferrer">Project Three</a>
-      </div>
-      <div class="project-item">
-        <img src="project4.png" alt="Project 4 Thumbnail" />
-        <a href="project4.html" target="_blank" rel="noopener noreferrer">Project Four</a>
-      </div>
+  <!-- 📦 Project List  -->
+  <div class="project-list" id="projectList">
+    <div class="project-item" data-tags="cs,electrical,arduino">
+      <img src="project1.png" alt="error loading img" />
+      <a href="https://duncanrhoads.github.io/projects/can-crusher" target="_blank" rel="noopener noreferrer">Can Crusher</a>
     </div>
-  </div>
 
-  <div class="dropdown" tabindex="0">
-    <div class="dropdown-title">CATEGORY 3</div>
-    <div class="dropdown-content">
-      <div class="project-item">
-        <img src="project5.png" alt="Project 5 Thumbnail" />
-        <a href="project5.html" target="_blank" rel="noopener noreferrer">Project Five</a>
-      </div>
-      <div class="project-item">
-        <img src="project6.png" alt="Project 6 Thumbnail" />
-        <a href="project6.html" target="_blank" rel="noopener noreferrer">Project Six</a>
-      </div>
+    <div class="project-item" data-tags="cs,electrical,arduino">
+      <img src="project2.png" alt="error loading img" />
+      <a href="https://duncanrhoads.github.io/projects/wifi-car" target="_blank" rel="noopener noreferrer">WiFi Car</a>
     </div>
-  </div>
 
-<script>
-  // Toggle dropdown open/close on click
-  document.querySelectorAll('.dropdown').forEach(dropdown => {
-    dropdown.addEventListener('click', () => {
-      dropdown.classList.toggle('open');
-    });
-    // Also allow toggle with keyboard (Enter or Space)
-    dropdown.addEventListener('keydown', e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        dropdown.classList.toggle('open');
-      }
-    });
-  });
-</script>
+    <div class="project-item" data-tags="cs,electrical,arduino,python">
+      <img src="project3.png" alt="error loading img" />
+      <a href="https://duncanrhoads.github.io/projects/totally-not-jeopardy" target="_blank" rel="noopener noreferrer">Totally NOT Jeopardy</a>
+    </div>
+
+    <div class="project-item" data-tags="script">
+      <img src="project4.png" alt="error loading img" />
+      <a href="https://duncanrhoads.github.io/projects/yt-transfer" target="_blank" rel="noopener noreferrer">YT Transfer</a>
+    </div>
+
+    <div class="project-item" data-tags="script">
+      <img src="project4.png" alt="error loading img" />
+      <a href="https://duncanrhoads.github.io/projects/mv-symlink" target="_blank" rel="noopener noreferrer">mv_symlink</a>
+    </div>
+  <!-- 🧠 JS Filtering Logic -->
+  <script>
+    function filterProjects() {
+      const selected = document.getElementById('filterSelect').value;
+      const projects = document.querySelectorAll('.project-item');
+
+      projects.forEach(project => {
+        const tags = project.dataset.tags.split(',');
+
+        if (selected === 'all' || tags.includes(selected)) {
+          project.classList.remove('hidden');
+        } else {
+          project.classList.add('hidden');
+        }
+      });
+    }
+  </script>
 </body>
 </html>
