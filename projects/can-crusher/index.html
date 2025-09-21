@@ -34,7 +34,11 @@
     }
 
     .project-image {
-      flex: 1 1 300px;
+      width: auto;            
+      max-width: 100%;        
+      height: auto;            
+      max-height: 250px;       
+      object-fit: cover;  
     }
 
     .project-image img {
@@ -109,7 +113,7 @@
     .typed-body {
       font-size: 0.9rem;
       font-weight: normal;
-      white-space: pre;
+      white-space: pre-wrap;
     }
 
     @media (max-width: 600px) {
