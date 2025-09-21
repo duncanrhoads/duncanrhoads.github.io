@@ -4,7 +4,7 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" as="style">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Project TEST</title>
+  <title>Can-Crusher</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -16,6 +16,8 @@
       padding: 20px;
       image-rendering: pixelated;
       user-select: none;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -31,21 +33,40 @@
       flex-wrap: wrap;
       gap: 20px;
       margin-bottom: 40px;
+      align-items: flex-start;
     }
 
     .project-image {
-      flex: 1 1 300px;
+      flex: 1;
+      min-width: 300px;
+      max-width: 400px;
     }
 
-    .project-image img {
+    .project-image img, .placeholder-image {
       width: 100%;
-      max-width: 400px;
-      height: auto;
+      height: 300px;
       border: 2px solid #FFFFFF;
+      object-fit: cover;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 0.8rem;
+    }
+
+    .placeholder-image {
+      background: linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
+                  linear-gradient(-45deg, #1a1a1a 25%, transparent 25%), 
+                  linear-gradient(45deg, transparent 75%, #1a1a1a 75%), 
+                  linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
     }
 
     .info-box {
-      flex: 1 1 300px;
+      flex: 1;
+      min-width: 300px;
       border: 2px solid #FFFFFF;
       padding: 20px;
       background: #000000;
@@ -59,13 +80,20 @@
     }
 
     .info-box li {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      word-wrap: break-word;
+    }
+
+    .info-box strong {
+      display: inline-block;
+      min-width: 80px;
     }
 
     .section {
       border: 2px solid #FFFFFF;
       padding: 20px;
       margin-bottom: 30px;
+      word-wrap: break-word;
     }
 
     .section h2 {
@@ -75,23 +103,27 @@
       padding-bottom: 5px;
     }
 
-    .section img {
+    .section img, .section .placeholder-image {
       width: 100%;
       max-width: 600px;
       height: auto;
+      min-height: 200px;
       border: 2px solid #FFFFFF;
-      margin-top: 10px;
+      margin: 20px auto;
+      display: block;
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .section-body {
       text-align: left;
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 100%;
+      margin: 0;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .typed-title {
@@ -109,9 +141,17 @@
     .typed-body {
       font-size: 0.9rem;
       font-weight: normal;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      
       .typed-title {
         font-size: 1.2rem;
       }
@@ -123,8 +163,15 @@
       .typed-body {
         font-size: 0.8rem;
       }
-    }
 
+      .top-section {
+        flex-direction: column;
+      }
+
+      .project-image, .info-box {
+        min-width: 100%;
+      }
+    }
 
     .cursor {
       display: inline-block;
@@ -147,6 +194,29 @@
       color: #000000;
       text-decoration: none;
     }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .gallery-item {
+      border: 2px solid #FFFFFF;
+      aspect-ratio: 1;
+      background: linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
+                  linear-gradient(-45deg, #1a1a1a 25%, transparent 25%), 
+                  linear-gradient(45deg, transparent 75%, #1a1a1a 75%), 
+                  linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 0.7rem;
+    }
   </style>
 </head>
 <body>
@@ -156,14 +226,14 @@
   </div>
 
   <div class="top-section">
-  <div class="project-image">
-    <img src="your-main-image.png" alt="Main project image">
-  </div>
+    <div class="project-image">
+      <img src="c1.jpg" alt="Error">
+    </div>
 
-  <div class="info-box">
-    <ul id="info-list"></ul>
+    <div class="info-box">
+      <ul id="info-list"></ul>
+    </div>
   </div>
-</div>
 
   <div class="section">
     <div class="section-header" id="terminal-overview-header">
@@ -181,136 +251,131 @@
     <div id="terminal-howitworks-body" class="section-body">
       <span class="typed-text typed-body"></span><span class="cursor">█</span>
     </div>
-    <img src="workflow-diagram.png" alt="Workflow Diagram">
+    <div class="placeholder-image">
+      [Workflow Diagram]
+    </div>
   </div>
 
   <div class="section">
     <div id="terminal-gallery-header" class="section-header">
       <span class="typed-text typed-header"></span><span class="cursor">█</span>
     </div>
-    <img src="screenshot1.png" alt="Screenshot 1">
-    <img src="screenshot2.png" alt="Screenshot 2">
+    <div class="gallery-grid">
+      <div class="gallery-item">[Process Image 1]</div>
+      <div class="gallery-item">[Process Image 2]</div>
+      <div class="gallery-item">[Final Result]</div>
+      <div class="gallery-item">[Detail Shot]</div>
+    </div>
   </div>
 
   <script>
-function typeText(elementId, text, speed = 30) {
-  return new Promise((resolve) => {
-    const container = document.getElementById(elementId);
-    if (!container) {
-      console.warn(`Element #${elementId} not found`);
-      resolve();
-      return;
+    function typeText(elementId, text, speed = 30) {
+      return new Promise((resolve) => {
+        const container = document.getElementById(elementId);
+        if (!container) {
+          console.warn(`Element #${elementId} not found`);
+          resolve();
+          return;
+        }
+
+        const textSpan = container.querySelector('.typed-text');
+        const cursor = container.querySelector('.cursor');
+
+        if (!textSpan || !cursor) {
+          console.warn(`Missing .typed-text or .cursor in #${elementId}`);
+          resolve();
+          return;
+        }
+
+        const allCursors = document.querySelectorAll('.cursor');
+        allCursors.forEach(c => c.style.visibility = 'hidden');
+
+        let i = 0;
+        cursor.style.visibility = 'hidden';
+
+        function typeChar() {
+          if (i < text.length) {
+            textSpan.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeChar, speed);
+          } else {
+            cursor.style.visibility = 'visible';
+            resolve();
+          }
+        }
+
+        typeChar();
+      });
     }
 
-    const textSpan = container.querySelector('.typed-text');
-    const cursor = container.querySelector('.cursor');
+    async function typeListItems(listId, items, speed = 30) {
+      const ul = document.getElementById(listId);
 
-    if (!textSpan || !cursor) {
-      console.warn(`Missing .typed-text or .cursor in #${elementId}`);
-      resolve();
-      return;
-    }
+      for (const item of items) {
+        const li = document.createElement('li');
 
-    const allCursors = document.querySelectorAll('.cursor');
-    allCursors.forEach(c => c.style.visibility = 'hidden');
+        const strong = document.createElement('strong');
+        strong.textContent = item.label + ": ";
+        li.appendChild(strong);
 
-    let i = 0;
-    cursor.style.visibility = 'hidden';
+        const span = document.createElement('span');
+        span.className = 'typed-text';
+        li.appendChild(span);
 
-    function typeChar() {
-      if (i < text.length) {
-        textSpan.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeChar, speed);
-      } else {
-        cursor.style.visibility = 'visible';
-        resolve();
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        cursor.textContent = '█';
+        li.appendChild(cursor);
+
+        ul.appendChild(li);
+
+        const allCursors = ul.querySelectorAll('.cursor');
+        allCursors.forEach(c => c.style.visibility = 'hidden');
+
+        await typeTextSpan(span, cursor, item.value, speed);
+        cursor.style.visibility = 'hidden';
       }
     }
 
-    typeChar();
-  });
-}
+    function typeTextSpan(textSpan, cursor, text, speed = 30) {
+      return new Promise((resolve) => {
+        let i = 0;
+        cursor.style.visibility = 'hidden';
 
-
-async function typeListItems(listId, items, speed = 30) {
-  const ul = document.getElementById(listId);
-
-  for (const item of items) {
-    // Create new li with strong label, typed span, and cursor
-    const li = document.createElement('li');
-
-    const strong = document.createElement('strong');
-    strong.textContent = item.label + ": ";
-    li.appendChild(strong);
-
-    const span = document.createElement('span');
-    span.className = 'typed-text';
-    li.appendChild(span);
-
-    const cursor = document.createElement('span');
-    cursor.className = 'cursor';
-    cursor.textContent = '█';
-    li.appendChild(cursor);
-
-    ul.appendChild(li);
-
-    // Hide all previous cursors before typing next
-    const allCursors = ul.querySelectorAll('.cursor');
-    allCursors.forEach(c => c.style.visibility = 'hidden');
-
-    // Type the current item
-    await typeTextSpan(span, cursor, item.value, speed);
-
-    // Hide the cursor after typing is complete
-    cursor.style.visibility = 'hidden';
-  }
-}
-
-
-function typeTextSpan(textSpan, cursor, text, speed = 30) {
-  return new Promise((resolve) => {
-    let i = 0;
-
-    cursor.style.visibility = 'hidden';
-
-    function typeChar() {
-      if (i < text.length) {
-        textSpan.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeChar, speed);
-      } else {
-        cursor.style.visibility = 'visible';
-        resolve();
-      }
+        function typeChar() {
+          if (i < text.length) {
+            textSpan.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeChar, speed);
+          } else {
+            cursor.style.visibility = 'visible';
+            resolve();
+          }
+        }
+        typeChar();
+      });
     }
-      typeChar();
-    });
-  }
 
+    window.onload = async function () {
+      await typeText('terminal-title', 'CAN CRUSHER', 50);
 
+      const infoItems = [
+        { label: 'Date', value: 'Summer 2025' },
+        { label: 'Tags', value: 'Electrical - Arduino - CS' },
+        { label: 'Objective', value: 'Crush leftover cans for disposal, we have a LOT' },
+        { label: 'Status', value: 'Complete' }
+      ];
+      await typeListItems('info-list', infoItems, 70);
 
-  window.onload = async function () {
-
-    await typeText('terminal-title', 'TEST TEST TEST', 50);
-
-     const infoItems = [
-    { label: 'Date', value: 'ex - ex' },
-    { label: 'Tools Used', value: 'ex - ex - ex' },
-    { label: 'Tags', value: 'ex - ex - ex' },
-    { label: 'Status', value: 'ex' },
-  ];
-  await typeListItems('info-list', infoItems, 50);
-
-
-    await typeText('terminal-overview-header', 'OVERVIEW', 50);
-    await typeText('terminal-overview-body', 'ex', 50);
-    await typeText('terminal-howitworks-header', 'HOW IT WORKS', 50);
-    await typeText('terminal-howitworks-body', 'ex', 50);
-    await typeText('terminal-gallery-header', 'GALLERY', 50);
-  };
-</script>
-
+      await typeText('terminal-overview-header', 'OVERVIEW', 70);
+      await typeText('terminal-overview-body', 'The previous can crusher was pneumatic, which resulted in operation being extremely noisy and limited to somewhere with a compressor. The button also took enough force that using it for extended periods would cause pain. I created a can crusher that improves on all of these aspects and is now used in my house as a drop and go system.', 30);
+      
+      await typeText('terminal-howitworks-header', 'HOW IT WORKS', 70);
+      await typeText('terminal-howitworks-body', 'I used a 700N electric linear actuator, BTS7960, IR transmitter/receiver, 12V power supply, and an Arduino Uno R3 in this project. The actuator and 12V power supply are connected to the driven ports of the motor driver. The Arduino is powered by USB-c and it provides 5V signals to the logic section of the BTS7960. The IR sensors transmit information to the Arduino when an object is detected. Additionally, the crusher can be activated with a push button or it can be stopped by an emergency button implemented as a safety mechanism. The Arduino handles all control logic and contains hard coded runtimes for actuator extension/retraction which are slightly longer than necessary to ensure extra tough cans are not left half crushed. The case was made by yours truly with old scrap wood, miscellaneous screws, and a couple saws. The only future upgrade in consideration is replacing the wooden exterior with metal to ensure longevity.', 30);
+      
+      await typeText('terminal-gallery-header', 'GALLERY', 70);
+    };
+  </script>
 
 </body>
 </html>
