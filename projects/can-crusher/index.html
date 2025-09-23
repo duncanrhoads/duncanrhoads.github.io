@@ -308,7 +308,7 @@
       });
     }
 
-    async function typeListItems(listId, items, speed = 30) {
+    async function typeListItems(listId, items, speed = 20) {
       const ul = document.getElementById(listId);
 
       for (const item of items) {
@@ -365,15 +365,15 @@
         { label: 'Objective', value: 'Crush leftover cans for disposal, we have a LOT' },
         { label: 'Status', value: 'Complete' }
       ];
-      await typeListItems('info-list', infoItems, 70);
+      await typeListItems('info-list', infoItems, 60);
 
-      await typeText('terminal-overview-header', 'OVERVIEW', 70);
-      await typeText('terminal-overview-body', 'The previous can crusher was pneumatic, which resulted in operation being extremely noisy and limited to somewhere with a compressor. The button also took enough force that using it for extended periods would cause pain. I created a can crusher that improves on all of these aspects and is now used in my house as a drop and go system.', 100);
+      await typeText('terminal-overview-header', 'OVERVIEW', 50);
+      await typeText('terminal-overview-body', 'The previous can crusher was pneumatic, which resulted in operation being extremely noisy and limited to somewhere with a compressor. The button also took enough force that using it for extended periods would cause pain. I created a can crusher that improves on all of these aspects and is now used in my house as a drop and go system.');
       
-      await typeText('terminal-howitworks-header', 'HOW IT WORKS', 70);
-      await typeText('terminal-howitworks-body', 'I used a 700N electric linear actuator, BTS7960, IR transmitter/receiver, 12V power supply, and an Arduino Uno R3 in this project. The actuator and 12V power supply are connected to the driven ports of the motor driver. The Arduino is powered by USB-c and it provides 5V signals to the logic section of the BTS7960. The IR sensors transmit information to the Arduino when an object is detected. Additionally, the crusher can be activated with a push button or it can be stopped by an emergency button implemented as a safety mechanism. The Arduino handles all control logic and contains hard coded runtimes for actuator extension/retraction which are slightly longer than necessary to ensure extra tough cans are not left half crushed. The case was made by yours truly with old scrap wood, miscellaneous screws, and a couple saws. The only future upgrade in consideration is replacing the wooden exterior with metal to ensure longevity.', 100);
+      await typeText('terminal-howitworks-header', 'HOW IT WORKS', 50);
+      await typeText('terminal-howitworks-body', 'I used a 700N electric linear actuator, BTS7960, IR transmitter/receiver, 12V power supply, and an Arduino Uno R3 in this project. The actuator and 12V power supply are connected to the driven ports of the motor driver. The Arduino is powered by USB-c and it provides 5V signals to the logic section of the BTS7960. The IR sensors transmit information to the Arduino when an object is detected. Additionally, the crusher can be activated with a push button or it can be stopped by an emergency button implemented as a safety mechanism. The Arduino handles all control logic and contains hard coded runtimes for actuator extension/retraction which are slightly longer than necessary to ensure extra tough cans are not left half crushed. The case was made by yours truly with old scrap wood, miscellaneous screws, and a couple saws. The only future upgrade in consideration is replacing the wooden exterior with metal to ensure longevity.');
       
-      await typeText('terminal-gallery-header', 'GALLERY', 70);
+      await typeText('terminal-gallery-header', 'GALLERY', 50);
     };
   </script>
 
