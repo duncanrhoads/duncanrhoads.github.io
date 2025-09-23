@@ -264,6 +264,15 @@
   </div>
 
   <div class="section">
+    <div id="terminal-background-header" class="section-header">
+      <span class="typed-text typed-header"></span><span class="cursor">█</span>
+    </div>
+    <div id="terminal-background-body" class="section-body">
+      <span class="typed-text typed-body"></span><span class="cursor">█</span>
+    </div>
+  </div>
+
+  <div class="section">
     <div id="terminal-skills-header" class="section-header">
       <span class="typed-text typed-header"></span><span class="cursor">█</span>
     </div>
@@ -277,35 +286,6 @@
     </div>
   </div>
 
-  <div class="section">
-    <div id="terminal-background-header" class="section-header">
-      <span class="typed-text typed-header"></span><span class="cursor">█</span>
-    </div>
-    <div id="terminal-background-body" class="section-body">
-      <span class="typed-text typed-body"></span><span class="cursor">█</span>
-    </div>
-  </div>
-
-  <div class="section">
-    <div id="terminal-interests-header" class="section-header">
-      <span class="typed-text typed-header"></span><span class="cursor">█</span>
-    </div>
-    <div class="interests-grid">
-      <div class="interest-item">[Engineering Projects]</div>
-      <div class="interest-item">[Electronics & Arduino]</div>
-      <div class="interest-item">[Problem Solving]</div>
-      <div class="interest-item">[Building & Making]</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div id="terminal-contact-header" class="section-header">
-      <span class="typed-text typed-header"></span><span class="cursor">█</span>
-    </div>
-    <div id="terminal-contact-body" class="section-body">
-      <span class="typed-text typed-body"></span><span class="cursor">█</span>
-    </div>
-  </div>
 
   <script>
     function typeText(elementId, text, speed = 30) {
@@ -407,17 +387,12 @@
       await typeListItems('info-list', infoItems, 70);
 
       await typeText('terminal-intro-header', 'INTRODUCTION', 50);
-      await typeText('terminal-intro-body', 'Hello! I am running insane hours at the moment and haven\'t been able to finsih this yet. Apologies!', 20);
-      
-      await typeText('terminal-skills-header', 'TECHNICAL SKILLS', 50);
+      await typeText('terminal-intro-body', 'Welcome traveler! Below you will find a short (hopefully) abstract of my journey to where I am now, and a quick reference to skills I have attained in that time. Please refer to the projects page to see said skills in action. Stay on your guard, becuase the sheer awesome of what I have created may blow you away.', 20);
       
       await typeText('terminal-background-header', 'BACKGROUND', 50);
-      await typeText('terminal-background-body', '', 20);
+      await typeText('terminal-background-body', 'I spawned in Southern Illinois, the land of farms and forests, which is where I stayed until I moved to Champaign, IL for univserity. I never thought much about what I was going to do in high school. Eventually a decision had to be made, so I chose Computer Science, because why not computers are cool. And I still agree with that statement, I\'d even upgrade it to fascinating, but after freshman year I knew something was off. When I REALLY like something, hell itself couldn\'t get me away from it, and it just wasn\'t that way. Do note, I do enjoy a lot about CS, from low-level programming to data visualisation and game creation, but I realized it alone couldn\'t fulfill me. FINALLY, I put genuine consideration toward engineering, and I haven\'t looked back ever since. (to be continued)', 20);
       
-      await typeText('terminal-interests-header', 'INTERESTS & PROJECTS', 50);
-      
-      await typeText('terminal-contact-header', 'GET IN TOUCH', 50);
-      await typeText('terminal-contact-body', '.', 20);
+      await typeText('terminal-skills-header', 'TECHNICAL SKILLS (unfinished)', 50);
     };
   </script>
 
